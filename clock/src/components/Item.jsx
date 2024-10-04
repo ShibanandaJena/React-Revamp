@@ -1,9 +1,17 @@
 import React from 'react'
+import '../App.css'
+import Button from './Button'
 
-function Item({carModels}) {
+function Item({carModels,handleBuyButton,bought}) {
+
 
 return (
-    <li class="list-group-item">{carModels}</li>
+    <>
+    <li className={`list-group-item ${bought && "active"}`} >{carModels}
+    <Button handleBuyButton={handleBuyButton}></Button>
+    </li>
+    
+    </>
   )
 }
 
