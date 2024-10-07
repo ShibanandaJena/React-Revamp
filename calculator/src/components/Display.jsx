@@ -1,9 +1,12 @@
 import React from 'react'
 import '../App.css'
 
-function Display() {
+function Display({calVal}) {
   return (
-    <input type="text"  className='input' disabled/>
+    <input type="text" 
+           value={calVal} 
+           className='input' 
+           readOnly/>
 
   )
 }

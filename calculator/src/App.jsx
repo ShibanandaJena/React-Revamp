@@ -7,7 +7,8 @@ import styles from './App.module.css'
 import { Button, ButtonContainer, Display } from './components/index'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [calVal, setcalVal] = useState("")
+
   const buttonTexts = [
     'C', '1', '2',
     '+', '3', '4',
@@ -16,14 +17,40 @@ function App() {
     '/', '=', '9',
     '0', '.'
   ];
+
+  const operator=[ '+','-','*','/']
+
+  const onButtonClick = (btnText) => {
+    if(btnText==='C'){
+      setcalVal("")
+    }
+    else if(btnText=== '='){
+      const result = eval(calVal)
+      // const resDisplay = `${calVal} = ${result}`
+
+      setcalVal(result)
+      // console.log(resDisplay)
+    }
+    else{
+
+      const newDisplayValue = calVal + btnText
+      setcalVal(newDisplayValue)
+      console.log(newDisplayValue)
+    }
+  }
+
+  
+
+
   return (
     <>
       <h3>My calculator</h3>
 
       <div className='calculator'>
-        <Display></Display>
-        <ButtonContainer>
-          <Button buttonTexts={buttonTexts}></Button>
+        <Display calVal={calVal}></Display>
+        <ButtonContainer >
+          <Button buttonTexts={buttonTexts}
+              onButtonClick={onButtonClick}></Button>
         </ButtonContainer>
       </div>
     </>

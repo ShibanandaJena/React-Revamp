@@ -1,12 +1,16 @@
 import React from 'react'
 import '../App.css'
 
-function Button({buttonTexts}) {
+function Button({buttonTexts,onButtonClick}) {
   return (
     
     <>
-        {buttonTexts.map((btn)=>(
-        <button>{btn}</button>
+         {buttonTexts.map((btn, index) => (
+        <button 
+          key={index}  // Add a unique key
+          className='btn-calc'
+          onClick={() => onButtonClick(btn)}
+        >{btn}</button>
     ))}
     </>
     

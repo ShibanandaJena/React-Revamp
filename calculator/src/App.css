@@ -62,7 +62,7 @@
   justify-content: space-between; /* Distributes buttons evenly */
 }
 
-button {
+.btn-calc {
   width: 30%;      /* Makes buttons flexible to fit three per row */
   padding: 10px;
   font-size: 16px;
