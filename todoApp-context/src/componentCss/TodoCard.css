@@ -1,0 +1,16 @@
+.custom-card {
+  border-radius: 8px; /* Rounded corners */
+  transition: transform 0.2s; /* Smooth hover effect */
+}
+
+.custom-card:hover {
+  transform: scale(1.02); /* Slightly enlarge card on hover */
+}
+
+.card-text a {
+  text-decoration: none; /* Remove underline from the link */
+}
+
+.card-text a:hover {
+  text-decoration: underline; /* Underline on hover */
+}

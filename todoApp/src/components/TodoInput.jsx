@@ -1,65 +1,82 @@
-import React, { useState } from 'react';
-import '../componentCss/TodoInput.css'
+import React, { useRef } from 'react';
+import '../componentCss/TodoInput.css';
 
+// Move idCounter outside the component to preserve state across renders
+let idCounter = 0;
 
 function TodoInput({ sendTodoData }) {
 
-  const [title, setTitle] = useState("")
-  const [description, setDescription] = useState("")
-  const [author, setAuthor] = useState("")
+  const titleRef = useRef();
+  const descriptionRef = useRef();
+  const authorRef = useRef();
 
-  let date = new Date()
-  let curr_date = date.toLocaleDateString()
-
-  let idCounter = 0;
+  let date = new Date();
+  let curr_date = date.toLocaleDateString();
 
   const getNextId = () => {
     idCounter += 1;
     return idCounter;
   };
 
-  const id = getNextId();
+  const sendData = (e) => {
+    e.preventDefault();
+    const title = titleRef.current.value;
+    const description = descriptionRef.current.value;
+    const author = authorRef.current.value;
 
-  const todo = {
-    id, title, description, author, curr_date
-  }
+    const todo = {
+      id: getNextId(),
+      title,
+      description,
+      author,
+      curr_date
+    };
 
-  const sendData = () => {
-    sendTodoData(todo)
-    setTitle("")
-    setAuthor("")
-    setDescription("")
-  }
+    sendTodoData(todo);
+
+    // Clear input fields after adding the todo
+    titleRef.current.value = '';
+    descriptionRef.current.value = '';
+    authorRef.current.value = '';
+  };
 
   return (
     <div className="todo-input">
       <h3>Add New Todo</h3>
-      <div className="form-row">
-        <div className="form-group">
-          <input type="text"
-            onChange={(e) => { setTitle(e.target.value) }}
-            value={title}
-            id="title"
-            placeholder="Title" />
+      <form onSubmit={sendData}>
+        <div className="form-row">
+          <div className="form-group">
+            <input
+              type="text"
+              ref={titleRef}
+              id="title"
+              placeholder="Title"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              ref={authorRef}
+              id="author"
+              placeholder="Author"
+              required
+            />
+          </div>
         </div>
-        <div className="form-group">
-          <input type="text"
-            onChange={(e) => setAuthor(e.target.value)}
-            value={author}
-            id="author"
-            placeholder="Author" />
+        <div className="form-row">
+          <div className="form-group">
+            <input
+              type="text"
+              ref={descriptionRef}
+              id="description"
+              placeholder="Description"
+              required
+            />
+          </div>
+          <button type='submit' className="add-todo-btn">Add Todo</button>
         </div>
-      </div>
-      <div className="form-row">
-        <div className="form-group">
-          <input type="text"
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-            id="description"
-            placeholder="Description" />
-        </div>
-        <button className="add-todo-btn" onClick={sendData}>Add Todo</button>
-      </div>
+      </form>
     </div>
   );
 }

@@ -1,0 +1,17 @@
+.cardWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Ensures equal space between cards */
+    gap: 20px; /* Adds spacing between cards */
+  }
+  
+  .TodoCard {
+    flex: 1 1 calc(33.333% - 20px); /* 33.333% width minus space for gaps */
+    padding: 15px; /* Padding inside each card */
+    margin-bottom: 20px; /* Margin between rows of cards */
+    box-sizing: border-box; /* Ensures padding and borders are included in width */
+    border: 1px solid #ddd; /* Optional: Adds a border to each card */
+    border-radius: 8px; /* Optional: Adds rounded corners to the cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds subtle shadow */
+  }
+  
