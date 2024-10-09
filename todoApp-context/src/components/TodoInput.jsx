@@ -54,7 +54,8 @@ function TodoInput() {
               // value={title}
               ref={titleRef}
               id="title"
-              placeholder="Title" />
+              placeholder="Title" 
+              required/>
           </div>
           <div className="form-group">
             <input type="text"
@@ -62,7 +63,7 @@ function TodoInput() {
               // value={author}
               ref={authorRef}
               id="author"
-              placeholder="Author" />
+              placeholder="Author" required/>
           </div>
         </div>
         <div className="form-row">
@@ -72,7 +73,7 @@ function TodoInput() {
               // value={description}
               ref={descriptionRef}
               id="description"
-              placeholder="Description" />
+              placeholder="Description" required/>
           </div>
           <button type='submit' className="add-todo-btn" >Add Todo</button>
         </div>

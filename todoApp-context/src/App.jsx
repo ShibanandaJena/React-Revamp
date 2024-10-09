@@ -1,21 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState,useReducer } from 'react'
 import './App.css'
 import { TodoContainer, TodoInput, TodoWrapper, Header, Footer ,WelcomeMsg } from './components/Index'
 import TodoItems from './store/todo-items-store'
+import {TodoItemsContextProvider} from './store/todoReducer'
+
+
 
 function App() {
-  const [todos, setTodo] = useState([])
-
-  const handleTodo = (dataFromInput) => {
-    setTodo((prevTodos) => [...prevTodos, dataFromInput])
-  }
-
-  useEffect(() => { }, [todos]);
-
-  const handleDelete = (id) => {
-    setTodo(todos.filter(todo => todo.id !== id));
-  }
-
 
   return (
     <>
@@ -37,11 +28,7 @@ function App() {
         <Footer></Footer>
       </Router> */}
 
-<TodoItems.Provider value={{
-  todos,
-  handleTodo,
-  handleDelete
-}}>
+<TodoItemsContextProvider>
 <Header></Header>
     <TodoContainer>
       <TodoInput ></TodoInput>
@@ -49,7 +36,7 @@ function App() {
       <TodoWrapper  ></TodoWrapper>
     </TodoContainer>
     <Footer></Footer>
-</TodoItems.Provider>
+</TodoItemsContextProvider>
     </>
   )
 }
